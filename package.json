@@ -1,0 +1,33 @@
+{
+  "name": "Game Corner System",
+  "description": "A complex, structured Discord bot.",
+  "version": "0.1",
+  "main": "app.js",
+  "keywords": [
+    "Discord",
+    "bot"
+  ],
+  "contributors": [
+    {
+      "name": "Game Corner Developers",
+      "email": "",
+      "web": "https://gamecorner-org.herokuapp.com/"
+    }
+  ],
+  "dependencies": {
+    "discord.js": "11.3.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bugs": {
+    "web": "https://github.com/Game-Corner/GC-System/issues"
+  },
+  "licenses": [
+    {
+      "name": "GNU General Public License v3.0",
+      "url": "https://www.gnu.org/licenses/gpl-3.0.en.html"
+    }
+  ],
+  "homepage": "https://github.com/Game-Corner/GC-System"
+}
