@@ -22,6 +22,7 @@ client.on('message', msg => {
       res.on('data', (d) => {
         var response = JSON.parse(d);
         console.log(response);
+        console.log(res.statusCode);
         if (res.statusCode !== '200') {
           if (res.statusCode === '400') {
             msg.reply('Something went wrong with the request! Please try again.');
