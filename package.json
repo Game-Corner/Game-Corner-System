@@ -3,6 +3,9 @@
   "description": "A complex, structured Discord bot.",
   "version": "0.1",
   "main": "app.js",
+  "dependencies": {
+    "discord.js": "11.3.0^"
+  },
   "keywords": [
     "Discord",
     "bot"
@@ -14,9 +17,6 @@
       "web": "https://gamecorner-org.herokuapp.com/"
     }
   ],
-  "dependencies": {
-    "discord.js": "11.3.0"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
