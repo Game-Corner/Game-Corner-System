@@ -1,33 +1,22 @@
 {
   "name": "game_corner_system",
-  "description": "A complex, structured Discord bot.",
-  "version": "0.1",
+  "version": "1.0.0",
+  "description": "A complex, structured discord bot.",
   "main": "app.js",
   "dependencies": {
-    "discord.js": "^11.3.0"
-  },
-  "keywords": [
-    "Discord",
-    "bot"
-  ],
-  "contributors": [
-    {
-      "name": "Game Corner Developers",
-      "email": "",
-      "web": "https://gamecorner-org.herokuapp.com/"
-    }
-  ],
+    "discord.js": "11.3.2^"
+  }
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "bugs": {
-    "web": "https://github.com/Game-Corner/GC-System/issues"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Game-Corner/GC-System.git"
   },
-  "licenses": [
-    {
-      "name": "GNU General Public License v3.0",
-      "url": "https://www.gnu.org/licenses/gpl-3.0.en.html"
-    }
-  ],
-  "homepage": "https://github.com/Game-Corner/GC-System"
+  "author": "Game Corner Commmunity",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/Game-Corner/GC-System/issues"
+  },
+  "homepage": "https://github.com/Game-Corner/GC-System#readme"
 }
