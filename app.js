@@ -19,11 +19,10 @@ client.on('message', msg => {
     var username = reststring.slice(0, propertyPos);
     var method = reststring.slice(propertyPos + 1);
     https.get('https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + username + '?api_key=' + process.env.apikey, (res) => {
-      
       res.on('data', (d) => {
         var response = JSON.parse(d);
         console.log(response);
-        if (d == 'undefind') {
+        if (res.statusCode !== '200') {
           if (res.statusCode === '400') {
             msg.reply('Something went wrong with the request! Please try again.');
           }
