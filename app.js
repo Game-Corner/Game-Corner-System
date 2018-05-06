@@ -1,17 +1,11 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
+const http - require('http');
 
 function request(username) {
-  var riot = new XMLHttpRequest();
-  riot.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      response = this.responseText;
-    }
-  };
-  riot.open('GET', 'https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + username + '?api_key=' + process.env.apikey, true);
-  riot.open();
-  return response
-}
+  http.get('https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + username + '?api_key=' + process.env.apikey, (res) => {
+  return res
+});
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
