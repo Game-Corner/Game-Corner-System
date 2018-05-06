@@ -2,6 +2,11 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const https = require("https");
 
+const server = https.createServer((req, res) => {
+  res.end();
+});
+server.listen(8000);
+
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
