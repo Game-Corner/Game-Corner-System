@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
-const http - require('http');
+const http = require("http");
 
 function request(username) {
   http.get('https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + username + '?api_key=' + process.env.apikey, (res) => {
