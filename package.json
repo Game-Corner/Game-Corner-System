@@ -1,5 +1,5 @@
 {
-  "name": "Game Corner System",
+  "name": "game_corner_system",
   "description": "A complex, structured Discord bot.",
   "version": "0.1",
   "main": "app.js",
