@@ -23,7 +23,7 @@ client.on('message', msg => {
         var response = JSON.parse(d);
         console.log(response);
         if (res.statusCode !== 200) {
-          switch(res.statusCode) {
+          switch (res.statusCode) {
             case: 400
               msg.reply('Something went wrong with the request! Please try again.');\
               break;
