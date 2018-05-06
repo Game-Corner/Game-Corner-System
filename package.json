@@ -1,22 +1,16 @@
 {
-  "name": "game_corner_system",
+  "name": "Bot",
   "version": "1.0.0",
-  "description": "A complex, structured discord bot.",
+  "description": "",
   "main": "app.js",
   "dependencies": {
-    "discord.js": "11.3.2^"
+    "discord.js": "^11.3.2"
   },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Game-Corner/GC-System.git"
-  },
-  "author": "Game Corner Commmunity",
-  "license": "SEE LICENSE IN LICENSE",
-  "bugs": {
-    "url": "https://github.com/Game-Corner/GC-System/issues"
-  },
-  "homepage": "https://github.com/Game-Corner/GC-System#readme"
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
