@@ -4,8 +4,10 @@ const http = require("http");
 
 function request(username) {
   http.get('https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + username + '?api_key=' + process.env.apikey, (res) => {
-  return res
-});
+    result = res;
+  });
+  return result
+}
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
