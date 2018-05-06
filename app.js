@@ -22,43 +22,44 @@ client.on('message', msg => {
       res.on('data', (d) => {
         var response = JSON.parse(d);
         console.log(response);
-        if (res.statusCode !== '200') {
-          if (res.statusCode === '400') {
-            msg.reply('Something went wrong with the request! Please try again.');
-          }
-          if (res.statusCode === '401') {
-            msg.reply('The developer of GC-System is not authorized to use the Riot API. Please contact them for furthur details.');
-          }
-          if (res.statusCode === '403') {
-            msg.reply('The username ' + username + ' is not found in NA1');
-          }
-          if (res.statusCode === '404') {
-            msg.reply('The username ' + username + ' is not found in NA1');
-          }
-          console.log(res.statusCode);
-          if (res.statusCode === '405') {
-            msg.reply('The method ' + method + ' is not valid. Please go to <https://developer.riotgames.com/api-methods/#summoner-v3/GET_getBySummonerName> to see all availible methods.');
-          }
-          if (res.statusCode === '415') {
-            msg.reply('The inputed text is not supported.');
-          }
-          if (res.statusCode === '422') {
-            msg.reply(username+ ' exists, but hasn\'t played since match history collection began.');
-          }
-          if (res.statusCode === '429') {
-            msg.reply('Too many requests are being made to the API. Please try again later.');
-          }
-          if (res.statusCode === '500') {
-            msg.reply('There is an internal server error. Please contact the Riot Developer team here: <https://developer.riotgames.com/support/tickets/>.');
-          }
-          if (res.statusCode === '502') {
-            msg.reply('There is a bad gateway. Please contact the developer of the bot.');
-          }
-          if (res.statusCode === '503') {
-            msg.reply('The Riot API is currently unavailible. Please see <https://developer.riotgames.com/api-status/> for more details.');
-          }
-          if (res.statusCode === '504') {
-            msg.reply('The response took too long. Please contact the developer of the bot.');
+        if (res.statusCode !== 200) {
+          switch(res.statusCode) {
+            case: 400
+              msg.reply('Something went wrong with the request! Please try again.');\
+              break;
+            case: 401
+              msg.reply('The developer of GC-System is not authorized to use the Riot API. Please contact them for furthur details.');
+              break;
+            case: 403
+              msg.reply('The username ' + username + ' is not found in NA1');
+              break;
+            case: 404
+              msg.reply('The username ' + username + ' is not found in NA1');
+              break;
+            case: 405
+              msg.reply('The method ' + method + ' is not valid. Please go to <https://developer.riotgames.com/api-methods/#summoner-v3/GET_getBySummonerName> to see all availible methods.');
+              break;
+            case: 415
+              msg.reply('The inputed text is not supported.');
+              break;
+            case: 422
+              msg.reply(username+ ' exists, but hasn\'t played since match history collection began.');
+              break;
+            case: 429
+              msg.reply('Too many requests are being made to the API. Please try again later.');
+              break;
+            case: 500
+              msg.reply('There is an internal server error. Please contact the Riot Developer team here: <https://developer.riotgames.com/support/tickets/>.');
+              break;
+            case: 502
+              msg.reply('There is a bad gateway. Please contact the developer of the bot.');
+              break;
+            case: 503
+              msg.reply('The Riot API is currently unavailible. Please see <https://developer.riotgames.com/api-status/> for more details.');
+              break;
+            case: 504
+              msg.reply('The response took too long. Please contact the developer of the bot.');
+              break;
           }
         }  
         else {
@@ -66,8 +67,7 @@ client.on('message', msg => {
             msg.reply('The ' + method + ' of ' + username + ' is ' + response[method]);
           }
           else {
-            var responseElse = JSON.stringify(response);
-            msg.reply('The data for ' + username + ' is ' + responseElse);
+            msg.reply('The data for ' + username + ' is ' + response);
           }
         }
       });
