@@ -18,8 +18,8 @@ client.on('message', msg => {
       console.log('headers:', res.headers);
 
       res.on('data', (d) => {
-        // var response = JSON.parse(d);
-        console.log(d.id);
+        var response = JSON.parse(d);
+        console.log(response. + property);
         msg.reply('The ' + property + ' of ' + username + ' is ' + 'yay');
       });
 
