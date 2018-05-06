@@ -14,7 +14,8 @@ client.on('message', msg => {
       console.log('headers:', res.headers);
 
       res.on('data', (d) => {
-        console.log(d.id);
+        var response = JSON.parse(d);
+        console.log(response);
         // process.stdout.write(d);
       });
 
