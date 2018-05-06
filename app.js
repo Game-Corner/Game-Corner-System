@@ -21,7 +21,8 @@ client.on('message', msg => {
     https.get('https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + username + '?api_key=' + process.env.apikey, (res) => {
       
       res.on('data', (d) => {
-      console.log(d);
+        var response = JSON.parse(d);
+        console.log(response);
         if (d == 'undefind') {
           if (res.statusCode === '400') {
             msg.reply('Something went wrong with the request! Please try again.');
@@ -61,7 +62,6 @@ client.on('message', msg => {
           }
         }  
         else {
-          var response = JSON.parse(d);
           if (method.length > 1) {
             msg.reply('The ' + method + ' of ' + username + ' is ' + response[method]);
           }
