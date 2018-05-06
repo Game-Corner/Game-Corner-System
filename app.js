@@ -24,7 +24,6 @@ client.on('message', msg => {
 
       res.on('data', (d) => {
         var response = JSON.parse(d);
-        console.log(response[property]);
         msg.reply('The ' + property + ' of ' + username + ' is ' + response[property]);
       });
 
