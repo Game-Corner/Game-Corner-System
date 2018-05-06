@@ -22,6 +22,7 @@ client.on('message', msg => {
       res.on('data', (d) => {
         var response = JSON.parse(d);
         var finalResponse = response[method];
+        console.log(response);
         switch (res.statusCode) {
           case 400:
             msg.reply('Something went wrong with the request! Please try again.');
