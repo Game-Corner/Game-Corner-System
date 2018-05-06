@@ -22,7 +22,6 @@ client.on('message', msg => {
       res.on('data', (d) => {
         var response = JSON.parse(d);
         console.log(response);
-        console.log(res.statusCode);
         if (res.statusCode !== '200') {
           if (res.statusCode === '400') {
             msg.reply('Something went wrong with the request! Please try again.');
@@ -36,6 +35,7 @@ client.on('message', msg => {
           if (res.statusCode === '404') {
             msg.reply('The username ' + username + ' is not found in NA1');
           }
+          console.log(res.statusCode);
           if (res.statusCode === '405') {
             msg.reply('The method ' + method + ' is not valid. Please go to <https://developer.riotgames.com/api-methods/#summoner-v3/GET_getBySummonerName> to see all availible methods.');
           }
