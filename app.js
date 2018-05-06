@@ -14,7 +14,7 @@ client.on('message', msg => {
       console.log('headers:', res.headers);
 
       res.on('data', (d) => {
-        process.stdout.write(d);
+        process.stdout.write(d.accountId);
       });
 
     }).on('error', (e) => {
