@@ -25,7 +25,7 @@ client.on('message', msg => {
         if (res.statusCode !== 200) {
           switch (res.statusCode) {
             case 400:
-              msg.reply('Something went wrong with the request! Please try again.');\
+              msg.reply('Something went wrong with the request! Please try again.');
               break;
             case 401:
               msg.reply('The developer of GC-System is not authorized to use the Riot API. Please contact them for furthur details.');
