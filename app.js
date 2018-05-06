@@ -9,7 +9,7 @@ client.on('ready', () => {
 client.on('message', msg => {
   if (msg.content.indexOf('API') === 0) {
     var username = msg.content.slice(3);
-    https.get('http://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + username + '?api_key=' + process.env.apikey, (res) => {
+    https.get('https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + username + '?api_key=' + process.env.apikey, (res) => {
       console.log('statusCode:', res.statusCode);
       console.log('headers:', res.headers);
 
