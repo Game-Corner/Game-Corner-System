@@ -47,19 +47,17 @@ client.on('message', msg => {
               msg.reply('Something went wrong with the request! Please try again.');
               break;
             case 401:
-              msg.reply('The developer of GC-System is not authorized to use the Riot API. Please contact them for furthur details.');
-              break;
             case 403:
-              msg.reply('The username ' + username + ' is not found in NA1');
+              msg.reply('The developer of GC-System is not authorized to use the Riot API. Please contact them for furthur details.');
               break;
             case 404:
               msg.reply('The username ' + username + ' is not found in NA1');
               break;
             case 405:
-              msg.reply('The method ' + method + ' is not valid. Please go to <https://developer.riotgames.com/api-methods/#summoner-v3/GET_getBySummonerName> to see all availible methods.');
+              msg.reply('The method connection is not allowed. Please contact the bot developer.');
               break;
             case 415:
-              msg.reply('The inputed text is not supported.');
+              msg.reply('The username text is not supported.');
               break;
             case 422:
               msg.reply(username + ' exists, but hasn\'t played since match history collection began.');
@@ -81,7 +79,12 @@ client.on('message', msg => {
               break;
             case 200:
               if (propertyPos !== -1) {
-                msg.reply('The ' + method + ' of ' + username + ' is ' + methodResponse);
+                if (methodResponse !== 'undefined') { 
+                  msg.reply('The ' + method + ' of ' + username + ' is ' + methodResponse);
+                }
+                else {
+                  msg.reply('This is not a valid name. You can find all of the names at: <https://developer.riotgames.com/api-methods/#summoner-v3/GET_getBySummonerName>);
+                }
               }
               else {
                 msg.reply('The data for ' + username + ' is ' + userResponse);
