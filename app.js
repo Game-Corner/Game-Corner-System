@@ -39,8 +39,8 @@ client.on('message', msg => {
       https.get('https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + username + '?api_key=' + process.env.apikey, (res) => {
         res.on('data', (d) => {
           var response = JSON.parse(d);
-          console.log(response);
-          var finalResponse = response[method];
+          var methodResponse = response[method];
+          var userResponse = JSON.stringify(response);
           console.log(res.statusCode);
           switch (res.statusCode) {
             case 400:
@@ -81,10 +81,10 @@ client.on('message', msg => {
               break;
             case 200:
               if (propertyPos !== -1) {
-                msg.reply('The ' + method + ' of ' + username + ' is ' + finalResponse);
+                msg.reply('The ' + method + ' of ' + username + ' is ' + methodResponse);
               }
               else {
-                msg.reply('The data for ' + username + ' is ' + response);
+                msg.reply('The data for ' + username + ' is ' + userResponse);
               }
           }
         });
