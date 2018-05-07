@@ -16,8 +16,10 @@ client.on('message', msg => {
     var content = msg.content;
     var reststring = content.slice(4);
     var propertyPos = reststring.indexOf('.');
-    var username = reststring.slice(0, propertyPos);
-    var method = reststring.slice(propertyPos + 1);
+    if (propertyPos !== -1) {
+      username = reststring.slice(0, propertyPos);
+      method = reststring.slice(propertyPos + 1);
+    }
     if (username.match('^[A-z0-9 ]+$')) {
       https.get('https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + username + '?api_key=' + process.env.apikey, (res) => {
         res.on('data', (d) => {
@@ -62,11 +64,11 @@ client.on('message', msg => {
               msg.reply('The response took too long. Please contact the developer of the bot.');
               break;
             case 200:
-              if (method.length > 1) {
+              if (propertyPos !== -1) {
                 msg.reply('The ' + method + ' of ' + username + ' is ' + finalResponse);
               }
               else {
-                msg.reply('The data for ' + username + ' is ' + finalResponse);
+                msg.reply('The data for ' + reststring + ' is ' + response);
               }
           }
         });
