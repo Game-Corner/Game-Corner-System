@@ -18,7 +18,7 @@ client.on('message', msg => {
     var propertyPos = reststring.indexOf('.');
     var username = reststring.slice(0, propertyPos);
     var method = reststring.slice(propertyPos + 1);
-    if (username.match("^[A-z0-9]+$\s")) {
+    if (username.match("^[A-z0-9]+\s$")) {
       https.get('https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + username + '?api_key=' + process.env.apikey, (res) => {
         res.on('data', (d) => {
           var response = JSON.parse(d);
