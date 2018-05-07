@@ -36,10 +36,10 @@ client.on('message', msg => {
       username = reststring;
     }
     if (username.match('^[A-z0-9 ]+$')) {
-      console.log(username);
       https.get('https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + username + '?api_key=' + process.env.apikey, (res) => {
         res.on('data', (d) => {
           var response = JSON.parse(d);
+          console.log(response);
           var finalResponse = response[method];
           console.log(res.statusCode);
           switch (res.statusCode) {
