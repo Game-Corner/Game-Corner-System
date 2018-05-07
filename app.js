@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const https = require("https");
+const port = process.env.PORT;
 
 const requestHandler = (request, response) => {
   console.log(request.url);
