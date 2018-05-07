@@ -83,7 +83,7 @@ client.on('message', msg => {
                   msg.reply('The ' + method + ' of ' + username + ' is ' + methodResponse);
                 }
                 else {
-                  msg.reply('This is not a valid name. You can find all of the names at: <https://developer.riotgames.com/api-methods/#summoner-v3/GET_getBySummonerName>);
+                  msg.reply('This is not a valid name. You can find all of the names at: <https://developer.riotgames.com/api-methods/#summoner-v3/GET_getBySummonerName>');
                 }
               }
               else {
