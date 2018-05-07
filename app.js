@@ -79,7 +79,7 @@ client.on('message', msg => {
               break;
             case 200:
               if (propertyPos !== -1) {
-                if (methodResponse !== 'undefined') { 
+                if (methodResponse !== undefined) { 
                   msg.reply('The ' + method + ' of ' + username + ' is ' + methodResponse);
                 }
                 else {
