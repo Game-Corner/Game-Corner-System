@@ -2,10 +2,20 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const https = require("https");
 
-const server = https.createServer((req, res) => {
-  res.end();
+const requestHandler = (request, response) => {
+  console.log(request.url);
+  response.end('GC-System active.');
+}
+
+const server = https.createServer(requestHandler)
+
+server.listen(port, (err) => {
+  if (err) {
+    return console.log('something bad happened', err)
+  }
+
+  console.log(`server is listening on ${port}`)
 });
-server.listen(8000);
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
