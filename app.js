@@ -27,9 +27,12 @@ client.on('message', msg => {
     var content = msg.content;
     var reststring = content.slice(4);
     var propertyPos = reststring.indexOf('.');
-    var username = reststring.slice(0, propertyPos);
+    var username;
     var method = reststring.slice(propertyPos + 1);
-    if (propertyPos === -1) {
+    if (propertyPos !== -1) {
+      username = reststring.slice(0, propertyPos);
+    }
+    else {
       username = reststring;
     }
     if (username.match('^[A-z0-9 ]+$')) {
