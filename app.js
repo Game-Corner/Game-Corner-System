@@ -8,14 +8,14 @@ const requestHandler = (request, response) => {
   response.end('GC-System active.');
 }
 
-const server = https.createServer(requestHandler)
+const server = https.createServer(requestHandler);
 
 server.listen(port, (err) => {
   if (err) {
-    return console.log('something bad happened', err)
+    return console.log('something bad happened', err);
   }
 
-  console.log(`server is listening on ${port}`)
+  console.log(`server is listening on ${port}`);
 });
 
 client.on('ready', () => {
@@ -23,17 +23,16 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-  if (msg.content.indexOf('API.') === 0) {
-    var content = msg.content;
-    var reststring = content.slice(4);
-    var propertyPos = reststring.indexOf('.');
-    var username;
-    var method = reststring.slice(propertyPos + 1);
-    if (propertyPos !== -1) {
-      username = reststring.slice(0, propertyPos);
+  var msgsplit = msg.content.split('.');
+  var username;
+  var method;
+  if (msgsplit[0] === 'API') {
+    if (msgsplit.length === 3) {
+      method = msgsplit[2];
+      username = msgsplit[1];
     }
-    else {
-      username = reststring;
+    if else (msgsplit.length === 2) {
+      username = msgsplit[1];
     }
     if (username.match('^[A-z0-9 ]+$')) {
       https.get('https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + username + '?api_key=' + process.env.apikey, (res) => {
@@ -78,7 +77,7 @@ client.on('message', msg => {
               msg.reply('The response took too long. Please contact the developer of the bot.');
               break;
             case 200:
-              if (propertyPos !== -1) {
+              if (msgsplit.length === 3) {
                 if (methodResponse !== undefined) { 
                   msg.reply('The ' + method + ' of ' + username + ' is ' + methodResponse);
                 }
