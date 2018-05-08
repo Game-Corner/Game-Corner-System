@@ -31,7 +31,7 @@ client.on('message', msg => {
       method = msgsplit[2];
       username = msgsplit[1];
     }
-    if else (msgsplit.length === 2) {
+    else if (msgsplit.length === 2) {
       username = msgsplit[1];
     }
     if (username.match('^[A-z0-9 ]+$')) {
