@@ -3,6 +3,7 @@ const client = new Discord.Client();
 const https = require("https");
 const port = process.env.PORT;
 
+// Server keeps the bot with Uptime Robot pinging it
 const requestHandler = (request, response) => {
   console.log(request.url);
   response.end('GC-System active.');
