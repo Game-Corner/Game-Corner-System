@@ -1,5 +1,5 @@
 exports.statusCodesFunc = function() {
-  switch (this.res.statusCode) {
+  switch (res.statusCode) {
     case 400:
       msg.reply('Something went wrong with the request! Please try again.');
       break;
