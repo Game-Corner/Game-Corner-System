@@ -21,7 +21,7 @@ server.listen(port, (err) => {
   console.log(`server is listening on ${port}`);
 });
 
-
+/*
 var rule = new schedule.RecurrenceRule();
 rule.hour = 17;
  
@@ -63,7 +63,7 @@ var j = schedule.scheduleJob(rule, function() {
     });
   });
 });
-
+*/
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
