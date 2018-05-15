@@ -23,7 +23,7 @@ server.listen(port, (err) => {
 });
 
 
-const server = new SMTPServer({
+const eserver = new SMTPServer({
     onAuth(auth, session, callback) {
         if(auth.username !== process.env.euser || auth.password !== process.env.epass){
             return callback(new Error('Invalid username or password'));
@@ -32,7 +32,7 @@ const server = new SMTPServer({
     }
 });
 
-server.listen(80[,host][,callback]);
+eserver.listen(80[,host][,callback]);
 
 
 var rule = new schedule.RecurrenceRule();
