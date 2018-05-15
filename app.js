@@ -83,8 +83,8 @@ client.on('ready', () => {
         host: 'in-v3.mailjet.com',
         port: 587,
         auth: {
-            user: process.env.e-user,
-            pass: process.env.e-pass
+            user: process.env.euser,
+            pass: process.env.epass
         }
     });
 
