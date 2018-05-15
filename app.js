@@ -23,7 +23,8 @@ server.listen(port, (err) => {
 
 
 var rule = new schedule.RecurrenceRule();
-rule.hour = 17;
+rule.hour = 9;
+rule.minute = 19;
  
 var j = schedule.scheduleJob(rule, function() {
   const nodemailer = require('nodemailer');
