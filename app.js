@@ -22,16 +22,16 @@ server.listen(port, (err) => {
 
 
 var rule = new schedule.RecurrenceRule();
-rule.hour = 9;
-rule.minute = 19;
+rule.hour = 11;
  
 var j = schedule.scheduleJob(rule, function() {
-
+  console.log('worked');
 });
 
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
+  j;
 });
 
 client.on('message', msg => {
