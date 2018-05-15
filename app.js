@@ -1,8 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const schedule = require('node-schedule');
-const nodemailer = require('nodemailer');
-const SMTPServer = require('smtp-server').SMTPServer;
 const https = require("https");
 const port = process.env.PORT;
 
@@ -23,18 +21,6 @@ server.listen(port, (err) => {
 });
 
 
-const eserver = new SMTPServer({
-    onAuth(auth, session, callback) {
-        if(auth.username !== process.env.euser || auth.password !== process.env.epass){
-            return callback(new Error('Invalid username or password'));
-        }
-        callback(null, {user: 123}); // where 123 is the user id or similar property
-    }
-});
-
-eserver.listen(80);
-
-
 var rule = new schedule.RecurrenceRule();
 rule.hour = 9;
 rule.minute = 19;
@@ -46,45 +32,6 @@ var j = schedule.scheduleJob(rule, function() {
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-  // Generate SMTP service account from ethereal.email
-  nodemailer.createTestAccount((err, account) => {
-    if (err) {
-        console.error('Failed to create a testing account. ' + err.message);
-        return process.exit(1);
-    }
-
-    console.log('Credentials obtained, sending message...');
-
-    // Create a SMTP transporter object
-    let transporter = nodemailer.createTransport({
-        host: 'https://gc-system-x.herokuapp.com/',
-        port: 80,
-        auth: {
-            user: process.env.euser,
-            pass: process.env.epass
-        }
-    });
-
-    // Message object
-    let message = {
-        from: 'gamecorner@gamcorner.org',
-        to: process.env.email,
-        subject: 'Nodemailer is unicode friendly ✔',
-        text: 'Hello to myself!',
-        html: '<p><b>Hello</b> to myself!</p>'
-    };
-
-    transporter.sendMail(message, (err, info) => {
-        if (err) {
-            console.log('Error occurred. ' + err.message);
-            return process.exit(1);
-        }
-
-        console.log('Message sent: %s', info.messageId);
-        // Preview only available when sending through an Ethereal account
-        console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-    });
-  });
 });
 
 client.on('message', msg => {
