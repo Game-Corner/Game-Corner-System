@@ -22,7 +22,8 @@ server.listen(port, (err) => {
 
 
 // Testing node schedule
-schedule.scheduleJob('*/5 * * * *', function(){
+ 
+var j = schedule.scheduleJob('5 * * * *', function(){
   console.log('The answer to life, the universe, and everything!');
 });
 
