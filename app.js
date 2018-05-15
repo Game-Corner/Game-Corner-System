@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const schedule = require('node-schedule');
 const nodemailer = require('nodemailer');
+const SMTPServer = require('smtp-server').SMTPServer;
 const https = require("https");
 const port = process.env.PORT;
 
@@ -21,51 +22,27 @@ server.listen(port, (err) => {
   console.log(`server is listening on ${port}`);
 });
 
-/*
+
+const server = new SMTPServer({
+    onAuth(auth, session, callback) {
+        if(auth.username !== process.env.euser || auth.password !== process.env.epass){
+            return callback(new Error('Invalid username or password'));
+        }
+        callback(null, {user: 123}); // where 123 is the user id or similar property
+    }
+});
+
+server.listen(80[,host][,callback]);
+
+
 var rule = new schedule.RecurrenceRule();
 rule.hour = 9;
 rule.minute = 19;
  
 var j = schedule.scheduleJob(rule, function() {
-  const nodemailer = require('nodemailer');
-  // Generate test SMTP service account from ethereal.email
-  // Only needed if you don't have a real mail account for testing
-  nodemailer.createTestAccount((err, account) => {
-    // create reusable transporter object using the default SMTP transport
-    let transporter = nodemailer.createTransport({
-        host: 'smtp.ethereal.email',
-        port: 587,
-        secure: false, // true for 465, false for other ports
-        auth: {
-            user: account.user, // generated ethereal user
-            pass: account.pass // generated ethereal password
-        }
-    });
 
-    // setup email data with unicode symbols
-    let mailOptions = {
-        from: '', // sender address
-        to: process.env.email, // list of receivers
-        subject: 'Hello ✔', // Subject line
-        text: 'Hello world?', // plain text body
-        html: '<b>Hello world?</b>' // html body
-    };
-
-    // send mail with defined transport object
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            return console.log(error);
-        }
-        console.log('Message sent: %s', info.messageId);
-        // Preview only available when sending through an Ethereal account
-        console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-
-        // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-        // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
-    });
-  });
 });
-*/
+
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -80,8 +57,8 @@ client.on('ready', () => {
 
     // Create a SMTP transporter object
     let transporter = nodemailer.createTransport({
-        host: 'in-v3.mailjet.com',
-        port: 587,
+        host: 'https://gc-system-x.herokuapp.com/',
+        port: 80,
         auth: {
             user: process.env.euser,
             pass: process.env.epass
