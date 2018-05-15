@@ -28,7 +28,7 @@ rule.hour = 17;
 var j = schedule.scheduleJob(rule, function() {
   // Generate test SMTP service account from ethereal.email
   // Only needed if you don't have a real mail account for testing
-  nodemailer.createTestAccount((err, account) =&gt; {
+  nodemailer.createTestAccount((err, account) => {
       // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
       host: 'smtp.ethereal.email',
