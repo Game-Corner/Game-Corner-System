@@ -32,7 +32,7 @@ const eserver = new SMTPServer({
     }
 });
 
-eserver.listen(80[,host][,callback]);
+eserver.listen(80);
 
 
 var rule = new schedule.RecurrenceRule();
