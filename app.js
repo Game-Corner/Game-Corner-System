@@ -80,12 +80,11 @@ client.on('ready', () => {
 
     // Create a SMTP transporter object
     let transporter = nodemailer.createTransport({
-        host: account.smtp.host,
-        port: account.smtp.port,
-        secure: account.smtp.secure,
+        host: 'in-v3.mailjet.com',
+        port: 587,
         auth: {
-            user: account.user,
-            pass: account.pass
+            user: process.env.e-user,
+            pass: process.env.e-pass
         }
     });
 
