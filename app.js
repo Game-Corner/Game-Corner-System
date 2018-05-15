@@ -5,7 +5,7 @@ const https = require("https");
 const port = process.env.PORT;
 
 
-// Server keeps the bot with Uptime Robot pinging it
+// Server keeps the bot up with Uptime Robot pinging it
 const requestHandler = (request, response) => {
   console.log(request.url);
   response.end('GC-System active.');
@@ -21,19 +21,19 @@ server.listen(port, (err) => {
 });
 
 
-var rule = new schedule.RecurrenceRule();
-rule.hour = 11;
- 
-var j = schedule.scheduleJob(rule, function() {
-  console.log('worked');
+// Testing node schedule
+schedule.scheduleJob('*/5 * * * *', function(){
+  console.log('The answer to life, the universe, and everything!');
 });
 
 
+// When discord.js client is ready
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
   j;
 });
 
+// When client receives a message
 client.on('message', msg => {
   var msgsplit = msg.content.split('.');
   var username;
@@ -52,7 +52,7 @@ client.on('message', msg => {
           var response = JSON.parse(d);
           var methodResponse = response[method];
           var userResponse = JSON.stringify(response);
-          console.log(res.statusCode);
+          console.log('Riot API statusCode: ' + res.statusCode);
             switch (res.statusCode) {
               case 400:
                 msg.reply('Something went wrong with the request! Please try again.');
