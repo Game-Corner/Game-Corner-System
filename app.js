@@ -8,7 +8,7 @@ const port = process.env.PORT;
 // Server keeps the bot up with Uptime Robot pinging it
 const requestHandler = (request, response) => {
   console.log(request.url);
-  response.end('GC-System active.');
+  response.end('server requested');
 }
 
 const server = https.createServer(requestHandler);
@@ -30,7 +30,6 @@ schedule.scheduleJob('*/5 * * * *', function(){
 // When discord.js client is ready
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-  j;
 });
 
 // When client receives a message
