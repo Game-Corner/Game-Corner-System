@@ -22,9 +22,11 @@ server.listen(port, (err) => {
 
 
 // Testing node schedule
+/*
 schedule.scheduleJob('/5 * * * * *', function() {
   console.log('The answer to life, the universe, and everything!');
 });
+*/
 
 
 // When discord.js client is ready
