@@ -2,11 +2,13 @@
   "name": "Bot",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "8.9.4"
+  },
   "main": "app.js",
   "dependencies": {
     "discord.js": "^11.3.2"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
