@@ -90,7 +90,7 @@ client.on('ready', () => {
 
     // Message object
     let message = {
-        from: 'lectrician16@gmail.com',
+        from: 'gamecorner@gamcorner.org',
         to: process.env.email,
         subject: 'Nodemailer is unicode friendly ✔',
         text: 'Hello to myself!',
