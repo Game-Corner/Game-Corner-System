@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
-const http = require("https");
+const https = require("https");
 const port = process.env.PORT;
 
 // Server keeps the bot with Uptime Robot pinging it
@@ -9,7 +9,7 @@ const requestHandler = (request, response) => {
   response.end('Hello, I am Geekybot!');
 }
 
-const server = http.createServer(requestHandler)
+const server = https.createServer(requestHandler)
 
 server.listen(port, (err) => {
   if (err) {
