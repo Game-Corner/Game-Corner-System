@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const schedule = require('node-schedule');
-const https = require("https");
+const http = require("http");
 const port = process.env.PORT;
 
 const statusCodes = require('./riot-api.js');
@@ -13,7 +13,7 @@ const requestHandler = (request, response) => {
   response.end('server requested');
 }
 
-const server = https.createServer(requestHandler);
+const server = http.createServer(requestHandler);
 
 server.listen(port, (err) => {
   if (err) {
