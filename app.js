@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const http = require("http");
+const https = require("https");
 const port = process.env.PORT;
 
 // Server keeps the bot with Uptime Robot pinging it
