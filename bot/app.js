@@ -37,22 +37,14 @@ client.on('ready', () => {
 });
 
 client.on('guildMemberRemove', member => {
-  member.createDM()
-    .then(DMchannel => {
-      DMchannel.send('Hey there, we\'d like to know why you left Game Corner so that future members have a better experience. Please type out your response in a message below. Thanks!')
-        .then(() => {
-          console.log('1 received');
-          const filter = m => m.content.length >= 1;
-          DMchannel.awaitMessages(filter, { max: 1, time: 86400000, errors: ['time'] })
-            .then(collected => {
-              console.log('2 received');
-              client.fetchUser('240550416129982464')
-                .then(user => {
-                  console.log('3 received');
-                  console.log(collected.values().next().value);
-                  // user.send(collected.values().value);
-                });
-            });
+  member.send('Hey there, we\'d like to know why you left Game Corner so that future members have a better experience. Please type out your response in a message below. Thanks!')
+    .then(msg => {
+      console.log('1 received');
+      const filter = m => m.content.length >= 1;
+      msg.channel.awaitMessages(filter, { max: 1, time: 86400000, errors: ['time'] })
+        .then(collected => {
+          msg.channel.send(collected.values().value);
+          console.log('2 received');
         });
     });
 });
