@@ -40,7 +40,8 @@ client.on('guildMemberRemove', member => {
   member.createDM()
     .then(DMchannel => {
       DMchannel.send('Hey there, we\d like to know why you left Game Corner so that future members have a better experience. Please type out your response in a message below. Thanks!');
-      DMchannel.awaitMessages(m =>, { max: 1, time: 86400000, errors: ['time'] })
+      const filter = m =>;
+      DMchannel.awaitMessages(filter, { max: 1, time: 86400000, errors: ['time'] })
         .then(collected => {
           client.fetchUser('240550416129982464').then(user => {
             user.send(collected.values().next().value);
