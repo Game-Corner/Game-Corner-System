@@ -50,7 +50,7 @@ client.on('guildMemberRemove', member => {
                 .then(user => {
                   console.log('3 received');
                   console.log(collected.values());
-                  user.send(collected.values().Message.content);
+                  user.send(collected.values().value);
                 });
             });
         });
