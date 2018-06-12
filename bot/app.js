@@ -49,9 +49,7 @@ client.on('guildMemberRemove', member => {
         });
     });
 });
-       
-      
-});
+
 // When client receives a message
 client.on('message', msg => {
   var msgsplit = msg.content.split('.');
