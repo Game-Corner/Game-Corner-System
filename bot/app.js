@@ -47,6 +47,7 @@ client.on('guildMemberRemove', member => {
           console.log('2 received');
           client.fetchUser('240550416129982464').then(user => {
             console.log('3 received');
+            console.log(collected.values());
             user.send(collected.values().next().value);
           });
         });
