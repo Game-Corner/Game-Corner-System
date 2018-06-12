@@ -49,7 +49,7 @@ client.on('guildMemberRemove', member => {
               client.fetchUser('240550416129982464')
                 .then(user => {
                   console.log('3 received');
-                  console.log(collected.values().value);
+                  console.log(collected.values().next().value);
                   // user.send(collected.values().value);
                 });
             });
