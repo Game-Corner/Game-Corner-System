@@ -37,13 +37,13 @@ client.on('ready', () => {
 });
 
 client.on('guildMemberRemove', member => {
-  member.send('Hey there, we\'d like to know why you left Game Corner so that future members have a better experience. Please type out your response in a message below. Thanks!')
+  member.user.send('Hey there, we\'d like to know why you left Game Corner so that future members have a better experience. Please type out your response in a message below. Thanks!')
     .then(msg => {
       console.log('1 received');
       const filter = m => m.content.length >= 1;
       msg.channel.awaitMessages(filter, { max: 1, time: 86400000, errors: ['time'] })
         .then(collected => {
-          msg.channel.send(collected.values().value);
+          member.user.send(collected.values().next().value);
           console.log('2 received');
         });
     });
