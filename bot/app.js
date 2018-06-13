@@ -40,7 +40,7 @@ client.on('guildMemberRemove', member => {
   member.user.send('Hey there, we\'d like to know why you left Game Corner so that future members have a better experience. Please type out your response in a message below. Thanks!')
     .then(msg => {
       console.log('1 received');
-      const filter = m => m.content.length >= 1;
+      const filter = m => m.author.id === member.user.id;
       msg.channel.awaitMessages(filter, { max: 1, time: 86400000, errors: ['time'] })
         .then(collected => {
           console.log(collected.values());
