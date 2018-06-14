@@ -43,6 +43,7 @@ client.on('guildMemberRemove', member => {
       const filter = m => m.author.id === member.user.id;
       msg.channel.awaitMessages(filter, { max: 1, time: 86400000, errors: ['time'] })
         .then(collected => {
+          console.log(`Size: ${collected.size}`);
           console.log(collected.values());
           member.user.send(collected.values().next().value);
           console.log('2 received');
@@ -52,6 +53,9 @@ client.on('guildMemberRemove', member => {
 
 // When client receives a message
 client.on('message', msg => {
+  if (msg.content === 'test') {
+    msg.member.send('hello');
+  }
   var msgsplit = msg.content.split('.');
   var username;
   var method;
