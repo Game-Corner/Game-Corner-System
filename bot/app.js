@@ -1,6 +1,5 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const schedule = require('node-schedule');
 const http = require("http");
 const port = process.env.PORT;
 
@@ -23,14 +22,6 @@ server.listen(port, (err) => {
 });
 
 
-// Testing node schedule
-/*
-schedule.scheduleJob('/5 * * * * *', function() {
-  console.log('The answer to life, the universe, and everything!');
-});
-*/
-
-
 // When discord.js client is ready
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -40,23 +31,21 @@ client.on('guildMemberRemove', member => {
   member.createDM()
     .then(DMchannel => {
       DMchannel.send('Hey there, we\'d like to know why you left Game Corner so that future members have a better experience. Please type out your response in a message below. Thanks!');
-      console.log('1 received');
       const filter = m => m.author.id === member.id;
       DMchannel.awaitMessages(filter, { max: 1, time: 86400000, errors: ['time'] })
         .then(collected => {
           console.log(`Size: ${collected.size}`);
           console.log(collected.values());
-          DMchannel.send(collected.values().next().value.toString());
-          console.log('2 received');
+          client.fetchUser('240550416129982464')
+            .then(user => {
+              user.send(`Forner member ${member.displayName} left Game Corner and said: ${collected.values().next().value.toString()}`);
+            });
         });
     });
 });
 
 // When client receives a message
 client.on('message', msg => {
-  if (msg.content === 'test') {
-    msg.member.send('hello');
-  }
   var msgsplit = msg.content.split('.');
   var username;
   var method;
