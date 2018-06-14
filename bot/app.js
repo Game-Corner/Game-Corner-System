@@ -34,8 +34,6 @@ client.on('guildMemberRemove', member => {
       const filter = m => m.author.id === member.id;
       DMchannel.awaitMessages(filter, { max: 1, time: 86400000, errors: ['time'] })
         .then(collected => {
-          console.log(`Size: ${collected.size}`);
-          console.log(collected.values());
           client.fetchUser('240550416129982464')
             .then(user => {
               user.send(`Forner member ${member.displayName} left Game Corner and said: ${collected.values().next().value.toString()}`);
