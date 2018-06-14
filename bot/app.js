@@ -46,7 +46,7 @@ client.on('guildMemberRemove', member => {
         .then(collected => {
           console.log(`Size: ${collected.size}`);
           console.log(collected.values());
-          DMchannel.send(collected.values().next().value);
+          DMchannel.send(collected.values().next().value.toString());
           console.log('2 received');
         });
     });
