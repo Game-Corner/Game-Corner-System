@@ -37,15 +37,16 @@ client.on('ready', () => {
 });
 
 client.on('guildMemberRemove', member => {
-  member.user.send('Hey there, we\'d like to know why you left Game Corner so that future members have a better experience. Please type out your response in a message below. Thanks!')
-    .then(msg => {
+  member.createDM()
+    .then(DMchannel => {
+      DMchannel.send('Hey there, we\'d like to know why you left Game Corner so that future members have a better experience. Please type out your response in a message below. Thanks!');
       console.log('1 received');
-      const filter = m => m.author.id === member.user.id;
-      msg.channel.awaitMessages(filter, { max: 1, time: 86400000, errors: ['time'] })
+      const filter = m => m.author.id === member.id;
+      DMchannel.awaitMessages(filter, { max: 1, time: 86400000, errors: ['time'] })
         .then(collected => {
           console.log(`Size: ${collected.size}`);
           console.log(collected.values());
-          member.user.send(collected.values().next().value);
+          DMchannel.send(collected.values().next().value);
           console.log('2 received');
         });
     });
