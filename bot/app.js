@@ -44,8 +44,8 @@ client.on('guildMemberRemove', member => {
       msg.channel.awaitMessages(filter, { max: 1, time: 86400000, errors: ['time'] })
         .then(collected => {
           console.log(`Size: ${collected.size}`);
-          console.log(collected.values());
-          member.user.send(collected.values().next().value);
+          console.log(collected.values().next().value);
+          // member.user.send(collected.values().next().value);
           console.log('2 received');
         });
     });
