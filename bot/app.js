@@ -49,7 +49,7 @@ client.on('message', msg => {
   var value;
   if (msgMatch[0] === 'API') {
     if (msgMatch[1] === 'summoner') {
-      if (4 >= msgMatch.length >= 3) {
+      if (msgMatch.length === 3 || msgMatch.length === 4) {
         if (msgMatch[2].startsWith('(') && msgMatch[2].endsWith(')')) {
           var userMatch = msgMatch[2];
           var username = userMatch.slice(1, -1);
@@ -122,6 +122,9 @@ client.on('message', msg => {
         else {
           msg.reply('Please provid the username as a parameter of \`summoner\` for the summoner.');
         }
+      }
+      else if (msgMatch.length > 4) {
+        msg.reply('There are no other parameters of those of \`summoner\`\'s');
       }
       else {
         msg.reply('Please provid a username as a parameter of \`summoner\` for the summoner.');
