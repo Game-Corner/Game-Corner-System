@@ -49,7 +49,7 @@ client.on('message', msg => {
   var value;
   if (msgMatch[0] === 'API') {
     if (msgMatch[1] === 'summoner') {
-      if (msgMatch.length === 3) {
+      if (4 >= msgMatch.length >= 3) {
         if (msgMatch[2].startsWith('(') && msgMatch[2].endsWith(')')) {
           var userMatch = msgMatch[2];
           var username = userMatch.slice(1, -1);
