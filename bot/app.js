@@ -57,9 +57,6 @@ client.on('message', msg => {
             value = 3;
             https.get('https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + username + '?api_key=' + process.env.apikey, (res) => {
               res.on('data', (d) => {
-                var response = JSON.parse(d);
-                var methodResponse = response[method];
-                var userResponse = JSON.stringify(response);
                 console.log('Riot API statusCode: ' + res.statusCode);
                 switch (res.statusCode) {
                   case 400:
@@ -97,9 +94,11 @@ client.on('message', msg => {
                     msg.reply('The response took too long. Please contact the developer of the bot.');
                     break;
                   case 200:
+                    var response = JSON.parse(d);
                     if (msgMatch.length === 4) {
-                      if (methodResponse !== undefined) { 
-                        method = msgMatch[3];
+                      method = msgMatch[3];
+                      var methodResponse = response[method];
+                      if (methodResponse !== undefined) {
                         msg.reply('The ' + method + ' of ' + username + ' is ' + methodResponse);
                       }
                       else {
@@ -107,7 +106,7 @@ client.on('message', msg => {
                       }
                     }
                     else {
-                      msg.reply('The data for ' + username + ' is ' + userResponse);
+                      msg.reply('The data for ' + username + ' is ' + response);
                     }
                 }
               });
