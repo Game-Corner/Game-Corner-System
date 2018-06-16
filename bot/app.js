@@ -95,10 +95,10 @@ client.on('message', msg => {
                     break;
                   case 200:
                     var response = JSON.parse(d);
+                    var userResponse = JSON.stringify(response);
                     if (msgMatch.length === 4) {
                       method = msgMatch[3];
                       var methodResponse = response[method];
-                      var userResponse = JSON.stringify(response);
                       if (methodResponse !== undefined) {
                         msg.reply('The ' + method + ' of ' + username + ' is ' + methodResponse);
                       }
