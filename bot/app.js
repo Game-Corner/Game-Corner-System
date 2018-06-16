@@ -98,6 +98,7 @@ client.on('message', msg => {
                     if (msgMatch.length === 4) {
                       method = msgMatch[3];
                       var methodResponse = response[method];
+                      var userResponse = JSON.stringify(response);
                       if (methodResponse !== undefined) {
                         msg.reply('The ' + method + ' of ' + username + ' is ' + methodResponse);
                       }
@@ -106,7 +107,7 @@ client.on('message', msg => {
                       }
                     }
                     else {
-                      msg.reply('The data for ' + username + ' is ' + response);
+                      msg.reply('The data for ' + username + ' is ' + userResponse);
                     }
                 }
               });
@@ -123,7 +124,7 @@ client.on('message', msg => {
         }
       }
       else if (msgMatch.length > 4) {
-        msg.reply('There are no other parameters of those of \`summoner\`\'s');
+        msg.reply('There are no other parameters of those of \`summoner\`\'s.');
       }
       else {
         msg.reply('Please provid a username as a parameter of \`summoner\` for the summoner.');
