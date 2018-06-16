@@ -50,6 +50,7 @@ client.on('message', msg => {
     if (msgMatch[1] === 'summoner') {
       console.log(msgMatch.length);
       if (msgMatch.length === 3) {
+        console.log(msgMatch[2]);
         if (msgMatch[2].startsWith('(') && msgMatch[2].endsWith(')')) {
           var userMatch = msgMatch[2];
           userMatch.slice(1,-1);
