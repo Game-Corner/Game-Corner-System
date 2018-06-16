@@ -49,12 +49,9 @@ client.on('message', msg => {
   if (msgMatch[0] === 'API') {
     if (msgMatch[1] === 'summoner') {
       if (msgMatch.length === 3) {
-        console.log(msgMatch[2]);
         if (msgMatch[2].startsWith('(') && msgMatch[2].endsWith(')')) {
           var userMatch = msgMatch[2];
-          userMatch.slice(1,-1);
-          username = userMatch;
-          console.log(username);
+          var username = userMatch.slice(1, -1);
           if (username.match('^[A-z0-9 ]+$')) {
             value = 3;
             https.get('https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + username + '?api_key=' + process.env.apikey, (res) => {
