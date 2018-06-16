@@ -119,7 +119,7 @@ client.on('message', msg => {
         }
       }
       else {
-        msg.reply('Please provid a username for the summoner.');
+        msg.reply('Please provid a username as a parameter of \`summoner\` for the summoner.');
       }
     }
     else {
