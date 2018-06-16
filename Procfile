@@ -1,1 +1,1 @@
-web: node ./bot/app.js
+web: node app.js
