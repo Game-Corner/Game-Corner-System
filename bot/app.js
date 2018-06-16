@@ -48,8 +48,8 @@ client.on('message', msg => {
   var value;
   if (msgMatch[0] === 'API') {
     if (msgMatch[1] === 'summoner') {
-      if (msgMatch[2].startsWith('(') & msgMatch[2].endsWith(')')) {
-        var userMatch = msgMatch[2]
+      if (msgMatch.length === 3 & msgMatch[2].startsWith('(') & msgMatch[2].endsWith(')')) {
+        var userMatch = msgMatch[2];
         userMatch.slice(1,-1);
         username = userMatch;
         if (username.match('^[A-z0-9 ]+$')) {
