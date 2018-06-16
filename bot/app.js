@@ -3,8 +3,6 @@ const client = new Discord.Client();
 const http = require("http");
 const port = process.env.PORT;
 
-const statusCodes = require('./riot-api.js');
-
 
 // Server keeps the bot up with Uptime Robot pinging it
 const requestHandler = (request, response) => {
@@ -44,32 +42,88 @@ client.on('guildMemberRemove', member => {
 
 // When client receives a message
 client.on('message', msg => {
-  var msgsplit = msg.content.split('.');
+  var msgMatch = msg.content.match(/\([^()]*\)|[^.]+(?=\([^()]*\))|[^.]+/g);
   var username;
   var method;
-  if (msgsplit[0] === 'API') {
-    if (msgsplit.length === 3) {
-      method = msgsplit[2];
-      username = msgsplit[1];
-    }
-    else if (msgsplit.length === 2) {
-      username = msgsplit[1];
-    }
-    if (username.match('^[A-z0-9 ]+$')) {
-      https.get('https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + username + '?api_key=' + process.env.apikey, (res) => {
-        res.on('data', (d) => {
-          var response = JSON.parse(d);
-          var methodResponse = response[method];
-          var userResponse = JSON.stringify(response);
-          console.log('Riot API statusCode: ' + res.statusCode);
-          statusCodes.statusCodesFunc(res.statusCode);
-        });
-      }).on('error', (e) => {
-        console.error(e);
-      });
+  var value;
+  if (msgMatch[0] === 'API') {
+    if (msgMatch[1] === 'summoner') {
+      if (msgMatch[2].startsWith('(') & msgMatch[2].endsWith(')')) {
+        var userMatch = msgMatch[2]
+        userMatch.slice(1,-1);
+        username = userMatch;
+        if (username.match('^[A-z0-9 ]+$')) {
+          value = 3;
+          https.get('https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + username + '?api_key=' + process.env.apikey, (res) => {
+            res.on('data', (d) => {
+              var response = JSON.parse(d);
+              var methodResponse = response[method];
+              var userResponse = JSON.stringify(response);
+              console.log('Riot API statusCode: ' + res.statusCode);
+              switch (res.statusCode) {
+                case 400:
+                  msg.reply('Something went wrong with the request! Please try again.');
+                  break;
+                case 401:
+                case 403:
+                  msg.reply('The developer of GC-System is not authorized to use the Riot API. Please contact them for furthur details.');
+                  break;
+                case 404:
+                  msg.reply('The username ' + username + ' is not found in NA1');
+                  break;
+                case 405:
+                  msg.reply('The method connection is not allowed. Please contact the bot developer.');
+                  break;
+                case 415:
+                  msg.reply('The username text is not supported.');
+                  break;
+                case 422:
+                  msg.reply(username + ' exists, but hasn\'t played since match history collection began.');
+                  break;
+                case 429:
+                  msg.reply('Too many requests are being made to the API. Please try again later.');
+                  break;
+                case 500:
+                  msg.reply('There is an internal server error. Please contact the Riot Developer team here: <https://developer.riotgames.com/support/tickets/>.');
+                  break;
+                case 502:
+                  msg.reply('There is a bad gateway. Please contact the developer of the bot.');
+                  break;
+                case 503:
+                  msg.reply('The Riot API is currently unavailible. Please see <https://developer.riotgames.com/api-status/> for more details.');
+                  break;
+                case 504:
+                  msg.reply('The response took too long. Please contact the developer of the bot.');
+                  break;
+                case 200:
+                  if (msgMatch.length === 4) {
+                    if (methodResponse !== undefined) { 
+                      method = msgMatch[3];
+                      msg.reply('The ' + method + ' of ' + username + ' is ' + methodResponse);
+                    }
+                    else {
+                      msg.reply('This is not a valid property. You can find all of the properties at: <https://developer.riotgames.com/api-methods/#summoner-v3/GET_getBySummonerName>');
+                    }
+                  }
+                  else {
+                    msg.reply('The data for ' + username + ' is ' + userResponse);
+                  }
+              }
+            });
+          }).on('error', (e) => {
+            console.error(e);
+          });
+        }
+        else {
+          msg.reply('Usernames can only contain letters and numbers.');
+        }
+      }
+      else {
+        msg.reply('Please provid a username for the summoner.');
+      }
     }
     else {
-      msg.reply('Usernames can only contain letters and numbers.');
+      msg.reply('Please provid a valid property of \`API\`. The only current property is \`summoner\`.');
     }
   }
 });
