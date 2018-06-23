@@ -24,7 +24,7 @@ server.listen(port, (err) => {
 // When discord.js client is ready
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-  client.fetchInvite('https://discord.gg/z5fQCTM')
+  client.fetchInvite('https://discord.gg/jgFrBhN')
     .then(invite => {
       console.log(invite.guild.channels.get('412025755594129431'));
     });
