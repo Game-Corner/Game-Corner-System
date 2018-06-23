@@ -26,7 +26,7 @@ client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
   client.fetchInvite('https://discord.gg/z5fQCTM')
     .then(invite => {
-      console.log(invite.guild.channels);
+      console.log(invite.guild.channels.prototype);
     });
 });
 
