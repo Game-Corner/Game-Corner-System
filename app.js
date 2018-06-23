@@ -24,6 +24,10 @@ server.listen(port, (err) => {
 // When discord.js client is ready
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
+  client.fetchInvite('https://discord.gg/z5fQCTM')
+    .then(invite => {
+      console.log(invite.guild.channels);
+    });
 });
 
 client.on('guildMemberRemove', member => {
