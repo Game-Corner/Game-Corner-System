@@ -30,7 +30,19 @@ client.on('ready', () => {
     });
 });
 
+async function myFunc(member) {
+  const DM = await member.createDM();
+  DM.send('Hey there, we\'d like to know why you left Game Corner so that future members have a better experience. Please type out your response in a message below. Thanks!');
+  const filter = m => m.author.id === member.id;
+  const collected = await DM.awaitMessages(filter, { max: 1, time: 86400000, errors: ['time'] });
+  const user = await client.fetchUser('240550416129982464');
+  user.send(`Forner member ${member.displayName} left Game Corner and said: ${collected.values().next().value.toString()}`);
+  console.log('yay');
+}
+
 client.on('guildMemberRemove', member => {
+  myFunc(member);
+  /*
   member.createDM()
     .then(DMchannel => {
       DMchannel.send('Hey there, we\'d like to know why you left Game Corner so that future members have a better experience. Please type out your response in a message below. Thanks!');
@@ -43,6 +55,7 @@ client.on('guildMemberRemove', member => {
             });
         });
     });
+    */
 });
 
 // When client receives a message
